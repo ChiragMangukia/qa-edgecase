@@ -1,4 +1,4 @@
-package io.github.chiragmangukia.edgecase.integer;
+package io.github.chiragmangukia.edgecase.strategy.integer;
 
 import io.github.chiragmangukia.edgecase.core.EdgeCase;
 import io.github.chiragmangukia.edgecase.strategy.Integer.IntegerBoundaryStrategy;
