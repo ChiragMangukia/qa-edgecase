@@ -258,7 +258,7 @@ CLI design
 - [x] Maven project
 - [x] Java 17 configuration
 - [x] README
-- [ ] Core domain model
+- [x] Core domain model
 - [ ] Edge-case categories
 - [ ] Strategy abstraction
 

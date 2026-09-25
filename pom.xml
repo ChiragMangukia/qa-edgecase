@@ -16,9 +16,19 @@
     <properties>
         <java.version>17</java.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
+        <junit-jupiter-api>5.14.4</junit-jupiter-api>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter-api}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
