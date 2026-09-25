@@ -259,8 +259,8 @@ CLI design
 - [x] Java 17 configuration
 - [x] README
 - [x] Core domain model
-- [ ] Edge-case categories
-- [ ] Strategy abstraction
+- [x] Edge-case categories
+- [x] Strategy abstraction
 
 ### 0.2 - Primitive Generators
 

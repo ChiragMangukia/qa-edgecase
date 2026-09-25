@@ -11,29 +11,46 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StringEdgeCaseGeneratorTest {
 
-    private final StringEdgeCaseGenerator generator = new StringEdgeCaseGenerator();
+    private final StringEdgeCaseGenerator generator =
+            new StringEdgeCaseGenerator();
 
     @Test
-    void shouldGenerateEdgeCase() {
+    void shouldGenerateExpectedNumberOfEdgeCases() {
 
-        List<EdgeCase<String>> edgeCases = generator.generate();
-        assertEquals(6, edgeCases.size());
+        List<EdgeCase<String>> edgeCases =
+                generator.generate();
+
+        assertEquals(11, edgeCases.size());
     }
 
     @Test
     void shouldGenerateEmptyStringCase() {
 
-        List<EdgeCase<String>> edgecases = generator.generate();
+        List<EdgeCase<String>> edgeCases =
+                generator.generate();
 
         assertTrue(
-                edgecases.contains(
-                        new EdgeCase<>(
-                                "",
-                                EdgeCaseCategory.EMPTY,
-                                "Empty string"
-                        )
-                )
+                edgeCases.stream()
+                        .anyMatch(edgeCase ->
+                                edgeCase.category() ==
+                                        EdgeCaseCategory.EMPTY)
         );
+    }
+
+    @Test
+    void shouldGenerateWhitespaceCases() {
+
+        List<EdgeCase<String>> edgeCases =
+                generator.generate();
+
+        long whitespaceCount =
+                edgeCases.stream()
+                        .filter(edgeCase ->
+                                edgeCase.category() ==
+                                        EdgeCaseCategory.WHITESPACE)
+                        .count();
+
+        assertEquals(5, whitespaceCount);
     }
 
     @Test
@@ -42,17 +59,14 @@ class StringEdgeCaseGeneratorTest {
         List<EdgeCase<String>> edgeCases =
                 generator.generate();
 
-        assertTrue(
+        long unicodeCount =
                 edgeCases.stream()
-                        .anyMatch(edgeCase ->
-                                edgeCase.value().equals("हिन्दी"))
-        );
+                        .filter(edgeCase ->
+                                edgeCase.category() ==
+                                        EdgeCaseCategory.UNICODE)
+                        .count();
 
-        assertTrue(
-                edgeCases.stream()
-                        .anyMatch(edgeCase ->
-                                edgeCase.value().equals("😊"))
-        );
+        assertEquals(5, unicodeCount);
     }
 
     @Test
