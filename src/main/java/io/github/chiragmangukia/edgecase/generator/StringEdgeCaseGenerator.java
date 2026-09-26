@@ -23,6 +23,10 @@ public class StringEdgeCaseGenerator implements EdgeCaseGenerator<String> {
         );
     }
 
+    public StringEdgeCaseGenerator(List<EdgeCaseStrategy<String>> strategies) {
+        this.strategies = List.copyOf(strategies);
+    }
+
     @Override
     public List<EdgeCase<String>> generate() {
 
