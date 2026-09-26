@@ -26,33 +26,30 @@ public class IntegerBoundaryStrategy implements EdgeCaseStrategy<Integer> {
     public List<EdgeCase<Integer>> generate() {
 
         if (minimum == maximum) {
-            return List.of(
-                    new EdgeCase<>(
-                            minimum,
-                            EdgeCaseCategory.BOUNDARY,
-                            "minimum and maximum"
-                    )
-            );
+            return List.of(new EdgeCase<>(minimum, EdgeCaseCategory.BOUNDARY, "minimum and maximum"));
         }
 
         List<EdgeCase<Integer>> edgeCases = new ArrayList<>();
 
-        addIfPossible(edgeCases, minimum, EdgeCaseCategory.BOUNDARY, "minimum");
-        addIfPossible(edgeCases, minimum + 1, EdgeCaseCategory.BOUNDARY, "minimum + 1");
-        addIfPossible(edgeCases, maximum - 1, EdgeCaseCategory.BOUNDARY, "maximum - 1");
-        addIfPossible(edgeCases, maximum, EdgeCaseCategory.BOUNDARY, "maximum");
+        addIfWithinIntegerRange(edgeCases, (long) minimum - 1, "minimum - 1");
+
+        edgeCases.add(new EdgeCase<>(minimum, EdgeCaseCategory.BOUNDARY, "minimum"));
+        edgeCases.add(new EdgeCase<>(minimum + 1, EdgeCaseCategory.BOUNDARY, "minimum + 1"));
+        edgeCases.add(new EdgeCase<>(maximum - 1, EdgeCaseCategory.BOUNDARY, "maximum - 1"));
+        edgeCases.add(new EdgeCase<>(maximum, EdgeCaseCategory.BOUNDARY, "maximum"));
+
+        addIfWithinIntegerRange(edgeCases, (long) maximum + 1, "maximum + 1");
 
         return List.copyOf(edgeCases);
     }
 
-    private void addIfPossible(
+    private void addIfWithinIntegerRange(
             List<EdgeCase<Integer>> edgeCases,
-            int value,
-            EdgeCaseCategory category,
+            long value,
             String reason
     ) {
-        if (value >= minimum && value <= maximum) {
-            edgeCases.add(new EdgeCase<>(value, category, reason));
+        if (value >= Integer.MIN_VALUE && value <= Integer.MAX_VALUE) {
+            edgeCases.add(new EdgeCase<>((int) value, EdgeCaseCategory.BOUNDARY, reason));
         }
     }
 }

@@ -18,7 +18,7 @@ class IntegerEdgeCaseGeneratorTest {
 
         List<EdgeCase<Integer>> edgeCases = generator.generate();
 
-        assertEquals(4, edgeCases.size());
+        assertEquals(6, edgeCases.size());
         assertTrue(edgeCases.stream().anyMatch(edgeCase -> edgeCase.value() == 100));
     }
 }
